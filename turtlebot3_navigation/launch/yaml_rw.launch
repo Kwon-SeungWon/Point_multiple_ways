@@ -1,0 +1,6 @@
+<launch>
+    <!-- yaml_rw.cpp -->
+    <node pkg="turtlebot3_navigation" type="yaml_rw" name="yaml_rw" output="screen">
+        <rosparam file="$(find turtlebot3_navigation)/config/example.yaml" />
+    </node>
+  </launch>

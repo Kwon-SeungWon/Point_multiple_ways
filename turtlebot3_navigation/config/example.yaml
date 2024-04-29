@@ -1,0 +1,10 @@
+# Example YAML Configuration File
+
+# Person details
+person:
+  name: John Doe
+  age: 30
+  profession: Software Engineer
+
+# Address details
+
