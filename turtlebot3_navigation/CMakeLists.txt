@@ -8,6 +8,8 @@ project(turtlebot3_navigation)
 # Find catkin packages and libraries for catkin and system dependencies
 ################################################################################
 find_package(catkin REQUIRED COMPONENTS 
+  actionlib
+  move_base_msgs
   roscpp 
   std_msgs
   geometry_msgs
@@ -58,9 +60,10 @@ install(DIRECTORY launch maps param rviz
 ################################################################################
 # Test
 ################################################################################
-add_executable(yaml_rw src/yaml_rw.cpp)
-target_link_libraries(yaml_rw 
+add_executable(waypoint_navigation src/waypoint_navigation.cpp)
+target_link_libraries(waypoint_navigation 
   ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
 )
 
 add_executable(save_clicked_point src/save_clicked_point.cpp)
