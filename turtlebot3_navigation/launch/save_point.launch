@@ -1,0 +1,5 @@
+<launch>
+    <!-- Execute save_clicked_point.cpp -->
+    <node pkg="turtlebot3_navigation" type="save_clicked_point" name="save_clicked_point" output="screen">
+    </node>
+  </launch>

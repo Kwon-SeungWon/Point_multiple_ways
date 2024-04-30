@@ -9,10 +9,6 @@ double z = 0.0;
 
 std::string yaml_file_path = "/home/asura/turtlebot_ws/src/turtlebot3/turtlebot3_navigation/config/clicked_points.yaml";
 
-// void ros::init(){
-//     fout << Yam
-// }
-
 void callback(const geometry_msgs::PointStamped::ConstPtr& msg) {
     // Create a YAML node for the point
     YAML::Node point_node;
