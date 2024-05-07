@@ -2,7 +2,7 @@
 # Set minimum required version of cmake, project name and compile options
 ################################################################################
 cmake_minimum_required(VERSION 3.0.2)
-project(turtlebot3_navigation)
+project(waypoint)
 
 ################################################################################
 # Find catkin packages and libraries for catkin and system dependencies
@@ -13,6 +13,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp 
   std_msgs
   geometry_msgs
+)
+
+find_package(yaml-cpp REQUIRED)
+include_directories(HEADERS_EXECUTABLE
+    ${YAML_INCLUDE_DIRS}
 )
 
 ################################################################################
@@ -55,3 +60,14 @@ install(DIRECTORY launch maps param rviz
 ################################################################################
 # Test
 ################################################################################
+add_executable(waypoint_navigation src/waypoint_navigation.cpp)
+target_link_libraries(waypoint_navigation 
+  ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
+)
+
+add_executable(save_clicked_point src/save_clicked_point.cpp)
+target_link_libraries(save_clicked_point 
+  ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
+)

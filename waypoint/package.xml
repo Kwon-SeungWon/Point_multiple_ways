@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>waypoint</name>
+  <version>1.2.6</version>
+  <description>
+    The waypoint provides roslaunch scripts for starting the navigation.
+  </description>
+  <license>Apache 2.0</license>
+  <author email="pyo@robotis.com">Pyo</author>
+  <author email="thlim@robotis.com">Darby Lim</author>
+  <author email="kkjong@robotis.com">Gilbert</author>
+  <author>Leon Jung</author>
+  <maintainer email="willson@robotis.com">Will Son</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <!--패키지를 빌드하기 위해 필요한 패키지를 적는다-->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <!--runtime 에 필요한 패키지를 적는다-->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <build_depend>yaml-cpp</build_depend>
+  <build_export_depend>yaml-cpp</build_export_depend>
+  <exec_depend>yaml-cpp</exec_depend>
+
+  <build_depend>actionlib</build_depend>
+  <build_depend>actionlib_msgs</build_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <build_export_depend>actionlib</build_export_depend>
+  <build_export_depend>actionlib_msgs</build_export_depend>
+  <build_export_depend>move_base_msgs</build_export_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+  <exec_depend>move_base_msgs</exec_depend>
+</package>

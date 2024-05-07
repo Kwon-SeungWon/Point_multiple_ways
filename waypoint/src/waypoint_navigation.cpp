@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 
     std::vector<geometry_msgs::PoseStamped> waypoints;
     std::string file_path;
-    nh.param<std::string>("file_path", file_path, "/home/asura/turtlebot_ws/src/turtlebot3/turtlebot3_navigation/config/clicked_points.yaml");
+    nh.param<std::string>("file_path", file_path, "/home/asura/turtlebot_ws/src/turtlebot3/waypoint/config/clicked_points.yaml");
     readWaypoints(file_path, waypoints);
 
     MoveBaseClient action_client("move_base", true);
