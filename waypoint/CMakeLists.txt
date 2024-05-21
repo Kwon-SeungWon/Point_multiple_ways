@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp 
   std_msgs
   geometry_msgs
+  visualization_msgs
 )
 
 find_package(yaml-cpp REQUIRED)
@@ -66,8 +67,15 @@ target_link_libraries(waypoint_navigation
   ${YAML_CPP_LIBRARIES}
 )
 
-add_executable(save_clicked_point src/save_clicked_point.cpp)
+# add_executable(save_clicked_point src/save_clicked_point_backup.cpp)
+# target_link_libraries(save_clicked_point 
+#   ${catkin_LIBRARIES}
+#   ${YAML_CPP_LIBRARIES}
+# )
+
+add_executable(save_clicked_point src/save_clicked_point.cpp src/main.cpp)
 target_link_libraries(save_clicked_point 
   ${catkin_LIBRARIES}
   ${YAML_CPP_LIBRARIES}
 )
+

@@ -1,5 +1,14 @@
 <launch>
+    <arg name="open_rviz" default="false"/>
+    <!-- rviz -->
+    <group if="$(arg open_rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find waypoint)/rviz/sip_node.rviz"/>
+    </group>
+
     <!-- Execute save_clicked_point.cpp -->
-    <node pkg="turtlebot3_navigation" type="save_clicked_point" name="save_clicked_point" output="screen">
+    <node pkg="waypoint" type="save_clicked_point" name="save_clicked_point" output="screen">
+      <rosparam file="$(find waypoint)/param/param.yaml" command="load"/>
     </node>
+
   </launch>

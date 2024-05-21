@@ -17,14 +17,17 @@
   <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>geometry_msgs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
   <!--패키지를 빌드하기 위해 필요한 패키지를 적는다-->
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
   <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>visualization_msgs</build_export_depend>
   <!--runtime 에 필요한 패키지를 적는다-->
   <exec_depend>roscpp</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
 
   <build_depend>yaml-cpp</build_depend>
   <build_export_depend>yaml-cpp</build_export_depend>
