@@ -7,8 +7,13 @@
     </group>
 
     <!-- Execute save_clicked_point.cpp -->
-    <node pkg="waypoint" type="save_clicked_point" name="save_clicked_point" output="screen">
-      <rosparam file="$(find waypoint)/param/param.yaml" command="load"/>
+    <node pkg="waypoint" type="save_data" name="save_data" output="screen">
+      <rosparam file="$(find waypoint)/param/file_path_param.yaml" command="load"/>
     </node>
+
+    <!-- Execute save_object_local.cpp -->
+    <!-- <node pkg="waypoint" type="save_data" name="save_object_local" output="screen">
+      <rosparam file="$(find waypoint)/param/save_object_param.yaml" command="load"/>
+    </node> -->
 
   </launch>

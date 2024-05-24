@@ -14,13 +14,17 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   visualization_msgs
+  interactive_markers
 )
 
 find_package(yaml-cpp REQUIRED)
+
+
 include_directories(HEADERS_EXECUTABLE
     ${YAML_INCLUDE_DIRS}
 )
 
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 ################################################################################
 # Setup for python modules and scripts
 ################################################################################
@@ -39,12 +43,13 @@ include_directories(HEADERS_EXECUTABLE
 catkin_package(
   #INCLUDE_DIRS include
   #LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp std_msgs geometry_msgs
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs tf
 )
 
 include_directories( 
   include 
   ${catkin_INCLUDE_DIRS}
+  ${OGRE_INCLUDE_DIRS}
 )
 
 ################################################################################
@@ -58,6 +63,11 @@ install(DIRECTORY launch maps param rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 ################################################################################
 # Test
 ################################################################################
@@ -67,15 +77,36 @@ target_link_libraries(waypoint_navigation
   ${YAML_CPP_LIBRARIES}
 )
 
+add_executable(area_marker src/area_marker.cpp)
+target_link_libraries(area_marker 
+  ${catkin_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
+)
+
+
+# Ensure MOC processing for drag_event_handler.h
+set(HEADERS
+  include/selection_saver/selection_saver.h
+)
+
+# qt5_wrap_cpp(MOC_FILES ${HEADERS})
+
 # add_executable(save_clicked_point src/save_clicked_point_backup.cpp)
 # target_link_libraries(save_clicked_point 
 #   ${catkin_LIBRARIES}
 #   ${YAML_CPP_LIBRARIES}
 # )
 
-add_executable(save_clicked_point src/save_clicked_point.cpp src/main.cpp)
-target_link_libraries(save_clicked_point 
+add_executable(save_data 
+  src/save_clicked_point.cpp 
+  src/save_object_local.cpp 
+  #src/selection_saver.cpp
+  # ${MOC_FILES}
+  src/main.cpp)
+target_link_libraries(save_data 
   ${catkin_LIBRARIES}
   ${YAML_CPP_LIBRARIES}
 )
 
+
+add_dependencies(save_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

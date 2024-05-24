@@ -1,0 +1,22 @@
+- header:
+    seq: 1
+    stamp: 703.104
+    frame_id: map
+  object:
+    name: QWER
+    size: 100
+  point:
+    x: 1.15139
+    y: 1.090197
+    z: -0.005279541
+- header:
+    seq: 3
+    stamp: 712.17
+    frame_id: map
+  object:
+    name: QWER
+    size: 100
+  point:
+    x: 1.116209
+    y: -0.01278844
+    z: -0.003326416
