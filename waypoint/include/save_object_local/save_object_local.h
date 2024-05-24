@@ -3,6 +3,7 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/PointStamped.h>
+#include <geometry_msgs/Pose.h>
 #include <std_msgs/Bool.h>
 #include <std_msgs/Empty.h>
 #include <std_msgs/Int16.h>
@@ -13,6 +14,7 @@
 #include <cmath>
 #include <visualization_msgs/MarkerArray.h>
 #include <visualization_msgs/Marker.h>
+#include <interactive_markers/interactive_marker_server.h>
 #include <vector>
 
 class ObjectSaver {
@@ -23,7 +25,8 @@ private:
     void executeCallback(const std_msgs::Int16::ConstPtr& msg);
     void objectNameCallback(const std_msgs::String::ConstPtr& msg);
     void saveObjectToFile(const geometry_msgs::PointStamped::ConstPtr& msg);
-    void publishMarkers();
+    void publishAreas(const geometry_msgs::Pose::ConstPtr& point, double area_x, double area_y, double area_z);
+    void processFeedback(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback);
 
     void setParam();
 
@@ -33,14 +36,14 @@ private:
     ros::Subscriber data_sub;
     ros::Subscriber point_sub;
     ros::Publisher marker_pub;
+    interactive_markers::InteractiveMarkerServer server;
 
     std::vector<geometry_msgs::Point> published_points;
     bool subscribe_sip_node;
+    bool first_point_set;
     ros::Time last_publish_time;
 
-    float point_x, point_y, point_z;
-
-    int click_subscribe_count;
+    geometry_msgs::Point first_point;
     std::string object_name;
 };
 

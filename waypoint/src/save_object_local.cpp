@@ -1,13 +1,12 @@
 #include "save_object_local/save_object_local.h"
 
-ObjectSaver::ObjectSaver() : nh("~") {
+ObjectSaver::ObjectSaver() : nh("~"), server("area_marker_server") {
     setParam();
     execute_sub = nh.subscribe<std_msgs::Int16>("/sip/node", 1, &ObjectSaver::executeCallback, this);
     data_sub = nh.subscribe<std_msgs::String>("/sip/node/name", 1, &ObjectSaver::objectNameCallback, this);
     point_sub = nh.subscribe<geometry_msgs::PointStamped>("/clicked_point2", 1, &ObjectSaver::saveObjectToFile, this);
     subscribe_sip_node = false;
-    click_subscribe_count = 0;
-    point_x, point_y, point_z = 0;
+    first_point_set = false;
 }
 
 void ObjectSaver::setParam() {
@@ -19,28 +18,31 @@ void ObjectSaver::saveObjectToFile(const geometry_msgs::PointStamped::ConstPtr& 
         return;
     }
     
-    if(click_subscribe_count < 2){
-        point_x += msg->point.x;
-        point_y += msg->point.y;
-        point_z += msg->point.z;
-
-        click_subscribe_count++;
-        ROS_INFO("Point: x=%f, y=%f, z=%f", msg->point.x, msg->point.y, msg->point.z);
-
-        if(click_subscribe_count == 1)  return;
+    if(!first_point_set){
+        first_point = msg->point;
+        first_point_set = true;
+        ROS_INFO("First point of diagonal - X: %f, Y: %f, Z: %f", first_point.x, first_point.y, first_point.z);
+        return;
     }
     
-    float mean_x, mean_y, mean_z = 0.0;
+    geometry_msgs::Point second_point = msg->point;
 
-    mean_x = point_x / 2.0;
-    mean_y = point_y / 2.0;
-    mean_z = point_z / 2.0;
+    ROS_INFO("Second point of diagonal - X: %f, Y: %f, Z: %f", second_point.x, second_point.y, second_point.z);
+
+    geometry_msgs::Pose mean;
+    mean.position.x = (first_point.x + second_point.x) / 2;
+    mean.position.y = (first_point.y + second_point.y) / 2;
+    mean.position.z = (first_point.z + second_point.z) / 2;
+
+    double size_x = fabs(first_point.x - second_point.x);
+    double size_y = fabs(first_point.y - second_point.y);
+    double size_z = fabs(first_point.z - second_point.z);
     
     // Create a YAML node for the point
     YAML::Node point_node;
-    point_node["x"] = mean_x;
-    point_node["y"] = mean_y;
-    point_node["z"] = mean_z;
+    point_node["x"] = mean.position.x;
+    point_node["y"] = mean.position.y;
+    point_node["z"] = mean.position.z;
 
     // Create a YAML node for the header
     YAML::Node header_node;
@@ -66,13 +68,47 @@ void ObjectSaver::saveObjectToFile(const geometry_msgs::PointStamped::ConstPtr& 
     // Write the waypoints to the YAML file
     std::ofstream fout(this->object_file_path);
     fout << integrated_node;
-    ROS_INFO("Saved point to clicked_points.yaml: x=%f, y=%f, z=%f", mean_x, mean_y, mean_z);
 
-    // CLEAR
-    click_subscribe_count = 0;
-    point_x = 0.0;
-    point_y = 0.0;
-    point_z = 0.0;
+    first_point_set = false;
+
+    boost::shared_ptr<geometry_msgs::Pose> mean_ptr(new geometry_msgs::Pose(mean));
+
+    // View Area (in box)
+    publishAreas(mean_ptr, size_x, size_y, size_z);
+}
+
+void ObjectSaver::publishAreas(const geometry_msgs::Pose::ConstPtr& point, double area_x, double area_y, double area_z){
+    static int marker_count = 0;
+
+    visualization_msgs::InteractiveMarker int_marker;
+    int_marker.header.frame_id = "map";
+    int_marker.name = "area_marker" + std::to_string(marker_count++);;
+    int_marker.scale = 1;
+
+    visualization_msgs::Marker box_marker;
+    box_marker.type = visualization_msgs::Marker::CUBE;
+    box_marker.scale.x = area_x;
+    box_marker.scale.y = area_y;
+    box_marker.scale.z = area_z;
+    box_marker.color.r = 0.0;
+    box_marker.color.g = 1.0;
+    box_marker.color.b = 0.0;
+    box_marker.color.a = 0.5;
+
+    visualization_msgs::InteractiveMarkerControl box_control;
+    box_control.always_visible = true;
+    box_control.markers.push_back(box_marker);
+
+    int_marker.pose = *point;
+    int_marker.controls.push_back(box_control);
+
+    server.insert(int_marker, boost::bind(&ObjectSaver::processFeedback, this, _1));
+    server.applyChanges();    
+}
+
+void ObjectSaver::processFeedback(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback){
+    ROS_INFO_STREAM("Feedback from marker '" << feedback->marker_name << "' "
+                        << " / control '" << feedback->control_name << "'");
 }
 
 void ObjectSaver::executeCallback(const std_msgs::Int16::ConstPtr& msg) {
