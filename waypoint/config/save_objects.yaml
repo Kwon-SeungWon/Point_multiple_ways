@@ -1,22 +1,44 @@
 - header:
-    seq: 1
-    stamp: 703.104
-    frame_id: map
-  object:
-    name: QWER
-    size: 100
-  point:
-    x: 1.15139
-    y: 1.090197
-    z: -0.005279541
-- header:
     seq: 3
-    stamp: 712.17
+    stamp: 260.77
     frame_id: map
   object:
-    name: QWER
+    name: qwer
     size: 100
   point:
-    x: 1.116209
-    y: -0.01278844
-    z: -0.003326416
+    x: -0.700428587384522
+    y: 1.259641349315643
+    z: -0.00335693359375
+- header:
+    seq: 5
+    stamp: 262.815
+    frame_id: map
+  object:
+    name: qwer
+    size: 100
+  point:
+    x: 1.208959579467773
+    y: 1.016664654016495
+    z: -0.005279541015625
+- header:
+    seq: 7
+    stamp: 264.253
+    frame_id: map
+  object:
+    name: qwer
+    size: 100
+  point:
+    x: 1.148191571235657
+    y: 0.03516750410199165
+    z: -0.00335693359375
+- header:
+    seq: 9
+    stamp: 269.923
+    frame_id: map
+  object:
+    name: qwer
+    size: 100
+  point:
+    x: 1.113010108470917
+    y: -1.118970960378647
+    z: -0.003387451171875

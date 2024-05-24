@@ -1,4 +1,4 @@
-#include "save_clicked_point/save_clicked_point.h"
+#include "save_move_path/save_move_path.h"
 #include <cmath>
 
 PointSaver::PointSaver() : nh("~") {
@@ -12,7 +12,7 @@ PointSaver::PointSaver() : nh("~") {
 }
 
 void PointSaver::setParam() {
-    nh.param("point_file_path", this->point_file_path, std::string("/home/asura/turtlebot_ws/src/turtlebot3/waypoint/config/clicked_points.yaml"));
+    nh.param("point_file_path", this->point_file_path, std::string("/home/asura/turtlebot_ws/src/turtlebot3/waypoint/config/move_paths.yaml"));
 }
 
 void PointSaver::savePointToFile(const geometry_msgs::PointStamped::ConstPtr& msg) {
@@ -44,7 +44,7 @@ void PointSaver::savePointToFile(const geometry_msgs::PointStamped::ConstPtr& ms
     // Write the waypoints to the YAML file
     std::ofstream fout(this->point_file_path);
     fout << waypoints_node;
-    ROS_INFO("Saved point to clicked_points.yaml: x=%f, y=%f, z=%f", msg->point.x, msg->point.y, msg->point.z);
+    ROS_INFO("Saved point to move_paths.yaml: x=%f, y=%f, z=%f", msg->point.x, msg->point.y, msg->point.z);
 
     // Add the point to the vector of points
     published_points.push_back(msg->point);

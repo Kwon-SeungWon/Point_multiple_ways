@@ -1,5 +1,5 @@
-#ifndef SAVE_CLICKED_POINT_H
-#define SAVE_CLICKED_POINT_H
+#ifndef SAVE_MOVE_PATH_H
+#define SAVE_MOVE_PATH_H
 
 #include <ros/ros.h>
 #include <geometry_msgs/PointStamped.h>

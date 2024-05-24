@@ -77,30 +77,10 @@ target_link_libraries(waypoint_navigation
   ${YAML_CPP_LIBRARIES}
 )
 
-add_executable(area_marker src/area_marker.cpp)
-target_link_libraries(area_marker 
-  ${catkin_LIBRARIES}
-  ${YAML_CPP_LIBRARIES}
-)
-
-
-# Ensure MOC processing for drag_event_handler.h
-set(HEADERS
-  include/selection_saver/selection_saver.h
-)
-
-# qt5_wrap_cpp(MOC_FILES ${HEADERS})
-
-# add_executable(save_clicked_point src/save_clicked_point_backup.cpp)
-# target_link_libraries(save_clicked_point 
-#   ${catkin_LIBRARIES}
-#   ${YAML_CPP_LIBRARIES}
-# )
-
 add_executable(save_data 
-  src/save_clicked_point.cpp 
+  src/save_move_path.cpp 
   src/save_object_local.cpp 
-  #src/selection_saver.cpp
+  src/save_polygon_local.cpp
   # ${MOC_FILES}
   src/main.cpp)
 target_link_libraries(save_data 
