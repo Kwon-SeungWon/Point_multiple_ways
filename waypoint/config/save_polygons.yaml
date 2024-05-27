@@ -1,11 +1,22 @@
-- header:
+- Polygon: Polygon
+  header:
     seq: 1
-    stamp: 233.148
+    stamp: 1716793055.306329
     frame_id: map
   polygon:
-    name: 234
+    name: A
     size: 100
   point:
-    x: 0.7803864777088165
-    y: -0.08312368392944336
-    z: -0.00335693359375
+    leftup_x: 1.628228306770325
+    leftup_y: 1.707893252372742
+    leftup_z: 0.00250244140625
+    rightdown_x: 0.8213827013969421
+    rightdown_y: -1.424456000328064
+    rightdown_z: -0.001434326171875
+- Object:
+    1:
+      object_name: ee
+      object_size: 100
+      object_point_x: 1.137578964233398
+      object_point_y: -0.02543944120407104
+      object_point_z: 0.000518798828125

@@ -26,11 +26,14 @@ private:
     void polygonNameCallback(const std_msgs::String::ConstPtr& msg);
     void savePolygonToFile(const geometry_msgs::PointStamped::ConstPtr& msg);
     void publishAreas(const geometry_msgs::Pose::ConstPtr& point, double area_x, double area_y, double area_z);
+    void checkAreas(const geometry_msgs::Point& point1, const geometry_msgs::Point& point2, YAML::Node& integrated_node);
     void processFeedback(const visualization_msgs::InteractiveMarkerFeedbackConstPtr &feedback);
+    void readObjectsFile();
 
     void setParam();
 
     std::string polygon_file_path;
+    std::string object_file_path;
     ros::NodeHandle nh;
     ros::Subscriber execute_sub;
     ros::Subscriber data_sub;
@@ -45,6 +48,8 @@ private:
 
     geometry_msgs::Point first_point;
     std::string polygon_name;
+    int polygon_counter;
+    std::vector<float> PolygonArray;
 };
 
 #endif
