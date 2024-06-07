@@ -45,4 +45,21 @@
   <exec_depend>actionlib</exec_depend>
   <exec_depend>actionlib_msgs</exec_depend>
   <exec_depend>move_base_msgs</exec_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>std_srvs</build_depend>
+  <build_depend>diagnostic_msgs</build_depend>
+  <build_depend>semantic_navigation_msgs</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>sdc_msgs</build_depend>
+  
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>diagnostic_msgs</exec_depend>
+  <exec_depend>semantic_navigation_msgs</exec_depend>
+  <exec_depend>tf2</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>sdc_msgs</exec_depend>
 </package>

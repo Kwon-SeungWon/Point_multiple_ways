@@ -1,22 +1,58 @@
 - Polygon: Polygon
   header:
     seq: 1
-    stamp: 1716793055.306329
+    stamp: 227.323
     frame_id: map
   polygon:
-    name: A
+    name: ""
     size: 100
   point:
-    leftup_x: 1.628228306770325
-    leftup_y: 1.707893252372742
-    leftup_z: 0.00250244140625
-    rightdown_x: 0.8213827013969421
-    rightdown_y: -1.424456000328064
-    rightdown_z: -0.001434326171875
+    leftup_x: 1.609488487243652
+    leftup_y: 1.353011250495911
+    leftup_z: 0.002471923828125
+    rightdown_x: 0.761887788772583
+    rightdown_y: -0.4478276968002319
+    rightdown_z: 0.002471923828125
 - Object:
     1:
-      object_name: ee
+      object_name: chair
       object_size: 100
-      object_point_x: 1.137578964233398
-      object_point_y: -0.02543944120407104
-      object_point_z: 0.000518798828125
+      object_point_x: 1.166641265153885
+      object_point_y: 1.038579136133194
+      object_point_z: -0.003387451171875
+- Object:
+    2:
+      object_name: desk
+      object_size: 100
+      object_point_x: 1.133308351039886
+      object_point_y: -0.02382070571184158
+      object_point_z: 0.002471923828125
+- Polygon: Polygon
+  header:
+    seq: 3
+    stamp: 256.199
+    frame_id: map
+  polygon:
+    name: Area1
+    size: 100
+  point:
+    leftup_x: 1.609488487243652
+    leftup_y: 1.305369853973389
+    leftup_z: 0.503173828125
+    rightdown_x: 0.8190296292304993
+    rightdown_y: -0.4192431569099426
+    rightdown_z: 0.503173828125
+- Object:
+    3:
+      object_name: chair
+      object_size: 100
+      object_point_x: 1.166641265153885
+      object_point_y: 1.038579136133194
+      object_point_z: -0.003387451171875
+- Object:
+    4:
+      object_name: desk
+      object_size: 100
+      object_point_x: 1.133308351039886
+      object_point_y: -0.02382070571184158
+      object_point_z: 0.002471923828125
