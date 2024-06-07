@@ -1,10 +1,15 @@
 ## 실행 순서
 Terminal 1
-  roslaunch turtlebot3_gazebo turtlebot3_world.launch 
+'''
+roslaunch turtlebot3_gazebo turtlebot3_world.launch 
+'''
 Terminal 2
-  roslaunch turtlebot3_navigation turtlebot3_navigation.launch
+'''
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 Terminal 3
-  roslaunch waypoint save_point.launch
+'''  
+roslaunch waypoint save_point.launch
+'''
 
 ## 사용법
 본 패키지는 waypoint 패키지만 있으면 작동함 (+ caselab_rviz_plugin)
@@ -17,7 +22,9 @@ Terminal 3
 3. Rviz 상단의 첫번째 Publish Point을 통해 이동할 지점들 클릭
 4. Rviz 상에서 node 및 edge가 나타남.
 -> 이후 아래 명령어로 waypoint navigation 실행 가능
-  rosrun waypoint waypoint_navigation
+'''
+rosrun waypoint waypoint_navigation
+'''
 5. waypoint/config/move_paths.yaml 파일에서 해당 노드들 확인 가능
 
 ### 2. object_local 모드
