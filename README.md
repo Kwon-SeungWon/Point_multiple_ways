@@ -1,53 +1,43 @@
-# TurtleBot3
-<img src="https://github.com/ROBOTIS-GIT/emanual/blob/master/assets/images/platform/turtlebot3/logo_turtlebot3.png" width="300">
+## 실행 순서
+Terminal 1
+  roslaunch turtlebot3_gazebo turtlebot3_world.launch 
+Terminal 2
+  roslaunch turtlebot3_navigation turtlebot3_navigation.launch
+Terminal 3
+  roslaunch waypoint save_point.launch
 
-[![kinetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/kinetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/kinetic-devel)
+## 사용법
+본 패키지는 waypoint 패키지만 있으면 작동함 (+ caselab_rviz_plugin)
 
-[![melodic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/melodic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/melodic-devel)
+### 1. move_path 모드
+로봇의 waypoint를 찍어 node를 yaml file로 저장함.
 
-[![noetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/noetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/noetic-devel)
+1. Rviz의 왼쪽 하단의 Make SIP_Node에서 --SELECT--를 클릭 후 move_path 선택
+2. Send! 버튼 누르기 (-> move_path 모드로 바뀜)
+3. Rviz 상단의 첫번째 Publish Point을 통해 이동할 지점들 클릭
+4. Rviz 상에서 node 및 edge가 나타남.
+-> 이후 아래 명령어로 waypoint navigation 실행 가능
+  rosrun waypoint waypoint_navigation
+5. waypoint/config/move_paths.yaml 파일에서 해당 노드들 확인 가능
 
-[![dashing-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/dashing-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/dashing-devel)
+### 2. object_local 모드
+object를 표시하기 위해 각 대각선의 좌표를 찍어 object들을 yaml file로 저장함.
 
-[![foxy-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/foxy-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/foxy-devel)
+1. Rviz의 왼쪽 하단의 Make SIP_Node에서 --SELECT--를 클릭 후 object_local 선택
+2. Object란에 해당 object의 이름 입력
+3. Send! 버튼 누르기 (-> object_local 모드로 바뀜)
+4. Rviz 상단의 두번째 Publish Point을 통해 해당 오브젝트를 설정할 사각형의 대각선 좌표 해당하는 점 2개 클릭
+5. waypoint/config/save_objects.yaml 파일에서 해당 object들 확인 가능
 
-[![galactic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3/workflows/galactic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3/tree/galactic-devel)
+### 3. polygon_local 모드
+polygon를 표시하기 위해 각 대각선의 좌표를 찍어 polygon들을 yaml file로 저장함.
+(추후 사각형이 아닌 다각형 형태로 업데이트할 예정)
 
-## ROBOTIS e-Manual for TurtleBot3
-- [ROBOTIS e-Manual for TurtleBot3](http://turtlebot3.robotis.com/)
+1. Rviz의 왼쪽 하단의 Make SIP_Node에서 --SELECT--를 클릭 후 polygon_local 선택
+2. Polygon란에 해당 polygon의 이름 입력
+3. Send! 버튼 누르기 (-> polygon_local 모드로 바뀜)
+4. Rviz 상단의 세번째 Publish Point을 통해 해당 polygon를 설정할 사각형의 대각선 좌표 해당하는 점 2개 클릭 (추후 사각형이 아닌 다각형 형태로 업데이트할 예정)
+5. waypoint/config/save_polygon.yaml 파일에서 해당 polygon들 확인 가능
 
-## Wiki for turtlebot3 Packages
-- http://wiki.ros.org/turtlebot3 (metapackage)
-- http://wiki.ros.org/turtlebot3_bringup
-- http://wiki.ros.org/turtlebot3_description
-- http://wiki.ros.org/turtlebot3_example
-- http://wiki.ros.org/turtlebot3_navigation
-- http://wiki.ros.org/turtlebot3_slam
-- http://wiki.ros.org/turtlebot3_teleop
 
-## Open Source related to TurtleBot3
-- [turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3)
-- [turtlebot3_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_msgs)
-- [turtlebot3_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)
-- [turtlebot3_applications_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_applications_msgs)
-- [turtlebot3_applications](https://github.com/ROBOTIS-GIT/turtlebot3_applications)
-- [turtlebot3_autorace](https://github.com/ROBOTIS-GIT/turtlebot3_autorace)
-- [turtlebot3_deliver](https://github.com/ROBOTIS-GIT/turtlebot3_deliver)
-- [hls_lfcd_lds_driver](https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver)
-- [turtlebot3_manipulation](https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git)
-- [turtlebot3_manipulation_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_manipulation_simulations.git)
-- [open_manipulator_msgs](https://github.com/ROBOTIS-GIT/open_manipulator_msgs)
-- [open_manipulator](https://github.com/ROBOTIS-GIT/open_manipulator)
-- [open_manipulator_simulations](https://github.com/ROBOTIS-GIT/open_manipulator_simulations)
-- [open_manipulator_perceptions](https://github.com/ROBOTIS-GIT/open_manipulator_perceptions)
-- [dynamixel_sdk](https://github.com/ROBOTIS-GIT/DynamixelSDK)
-- [OpenCR-Hardware](https://github.com/ROBOTIS-GIT/OpenCR-Hardware)
-- [OpenCR](https://github.com/ROBOTIS-GIT/OpenCR)
-
-## Documents and Videos related to TurtleBot3
-- [ROBOTIS e-Manual for TurtleBot3](http://turtlebot3.robotis.com/)
-- [ROBOTIS e-Manual for OpenManipulator](http://emanual.robotis.com/docs/en/platform/openmanipulator/)
-- [ROBOTIS e-Manual for Dynamixel SDK](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/overview/)
-- [Website for TurtleBot Series](http://www.turtlebot.com/)
-- [e-Book for TurtleBot3](https://community.robotsource.org/t/download-the-ros-robot-programming-book-for-free/51/)
-- [Videos for TurtleBot3 ](https://www.youtube.com/playlist?list=PLRG6WP3c31_XI3wlvHlx2Mp8BYqgqDURU)
+    
