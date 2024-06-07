@@ -1,8 +1,10 @@
 ## 실행 순서
 Terminal 1
+
 '''
 roslaunch turtlebot3_gazebo turtlebot3_world.launch 
 '''
+
 Terminal 2
 '''
 roslaunch turtlebot3_navigation turtlebot3_navigation.launch
