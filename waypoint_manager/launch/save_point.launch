@@ -1,0 +1,19 @@
+<launch>
+    <arg name="open_rviz" default="true"/>
+    <!-- rviz -->
+    <group if="$(arg open_rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find waypoint_manager)/rviz/sip_node.rviz"/>
+    </group>
+
+    <!-- Execute save_clicked_point.cpp -->
+    <node pkg="waypoint_manager" type="save_data" name="save_data" output="screen">
+      <rosparam file="$(find waypoint_manager)/param/file_path_param.yaml" command="load"/>
+    </node>
+
+    <!-- Execute save_object_local.cpp -->
+    <!-- <node pkg="waypoint_manager" type="save_data" name="save_object_local" output="screen">
+      <rosparam file="$(find waypoint_manager)/param/save_object_param.yaml" command="load"/>
+    </node> -->
+
+  </launch>

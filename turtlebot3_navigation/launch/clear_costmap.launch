@@ -1,6 +1,0 @@
-<launch>
-  <arg name="clear_hz" default="0.1"/>
-  <node pkg="turtlebot3_navigation" name="clear_costmap" type="clear_costmap" output="screen">
-      <param name="clear_hz" value="$(arg clear_hz)"/>
-  </node>
-</launch>

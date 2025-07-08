@@ -1,0 +1,10 @@
+<launch>
+    <!-- Parameters -->
+    <arg name="waypoint_file_path" default="/home/san/catkin_ws/src/waypoint_manager/config/move_paths.yaml"/>
+    
+    <!-- Execute waypoint_navigation.cpp -->
+    <node pkg="waypoint_manager" type="waypoint_navigation" name="waypoint_navigation" output="screen">
+        <param name="file_path" value="$(arg waypoint_file_path)"/>
+    </node>
+
+</launch> 

@@ -1,0 +1,3 @@
+point_file_path: /home/san/catkin_ws/src/waypoint_manager/config/move_paths.yaml
+object_file_path: /home/san/catkin_ws/src/waypoint_manager/config/save_objects.yaml
+polygon_file_path: /home/san/catkin_ws/src/waypoint_manager/config/save_polygons.yaml
